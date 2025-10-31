@@ -27,8 +27,8 @@ Keep_Ghastling
 **Keep_Ghastling** is a paper plugin that keeps ghastling maintaining its juvenile state.
 
 ## Features
-- Use 
-- Use 
+- Use …… to ……
+- Use …… to ……
 
 ## Building
 
