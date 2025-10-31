@@ -24,7 +24,7 @@ Keep_Ghastling
 
 
 ## Introduction
-**Keep_Ghastling** is a paper plugin that keeps ghastling maintaining its juvenile state.
+**Keep_Ghastling** is a **paper** plugin that keeps ghastling maintaining its juvenile state.
 
 ## Features
 - Use **ice blocks** on the Happy Ghastling to fix its juvenile state
