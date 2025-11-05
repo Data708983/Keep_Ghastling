@@ -40,6 +40,6 @@ Gradle is required to build the project.
 ```sh
 gradle build
 ```
-
+___
 - I have to apologize that the 1.0 ver. plugin did't work as expectation due to the misunderstand of the Document. But 2.0 ver. must work well! ❤️
 - Please report bugs and feature requests. PRs are welcome! 🙏🏻
