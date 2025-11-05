@@ -1,4 +1,4 @@
 name: Keep_Ghastling
-version: '1.0'
+version: '2.0'
 main: org.data7.keep_Ghastling.Keep_Ghastling
 api-version: '1.21'

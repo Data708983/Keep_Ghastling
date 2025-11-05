@@ -4,12 +4,12 @@ import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityTransformEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public final class Keep_Ghastling extends JavaPlugin implements Listener {
 
@@ -17,25 +17,30 @@ public final class Keep_Ghastling extends JavaPlugin implements Listener {
     public void onEnable() {
         getServer().getLogger().info("[Keep_Ghastling] Plugin Enabled");
         getServer().getPluginManager().registerEvents(this, this);
+        GhastNoGrowUpListener();
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
     }
 
-    @EventHandler
-    public void onGrowUp(EntityTransformEvent event){
-        if (event.getEntity() instanceof HappyGhast entity) {
-            if (!entity.isAdult()){
-                NamespacedKey key = new NamespacedKey(this,"keepGhastling");
-                PersistentDataContainer pdc = entity.getPersistentDataContainer();
-                Boolean value = pdc.getOrDefault(key, PersistentDataType.BOOLEAN, false);
-                if (value) {
-                    event.setCancelled(true);
+    public void GhastNoGrowUpListener() {
+        NamespacedKey key = new NamespacedKey(this,"keepGhastling");
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                for (World world : Bukkit.getWorlds()) {
+                    for (Entity entity : world.getEntitiesByClass(HappyGhast.class)) {
+                        HappyGhast ghast = (HappyGhast) entity;
+                        if (ghast.getPersistentDataContainer().getOrDefault(key, PersistentDataType.BOOLEAN, false)) {
+                            if (ghast.isAdult()) {
+                                ghast.setBaby();
+                            }
+                        }
+                    }
                 }
             }
-        }
+        }.runTaskTimer(this, 0L, 1L); // 每刻运行
     }
 
     @EventHandler
